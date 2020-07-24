@@ -1,7 +1,7 @@
 ## Arthedain/NovaExcelHelper
 Laravel Nova tool to export and import database to Excel file 
 
-###Installation
+### Installation
 
 ```
 composer require arthedain/nova-excel-helper
@@ -31,7 +31,7 @@ In the configuration file, write which models you will import and export in key-
     '\App\News' => 'News',
 ],
 ```
-#####Localization
+##### Localization
 ```
 "Nova Excel Helper": "Nova Excel Helper",
 "Select resource": "Select resource",
