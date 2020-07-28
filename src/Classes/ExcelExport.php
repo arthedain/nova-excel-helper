@@ -22,7 +22,22 @@ class ExcelExport implements FromCollection, WithHeadings
 
     public function headings(): array
     {
+        return $this->getTableColumns();
+    }
+
+    public function getTableColumns()
+    {
         $model = new $this->model;
-        return $model->getConnection()->getSchemaBuilder()->getColumnListing($model->getTable());
+        $fields =  $model->getConnection()->select(
+            (new \Illuminate\Database\Schema\Grammars\MySqlGrammar)->compileColumnListing()
+            .' order by ordinal_position',
+            [$model->getConnection()->getDatabaseName(), $model->getTable()]
+        );
+        $f = [];
+        foreach ($fields as $item){
+            array_push($f, $item->column_name);
+        }
+
+        return $f;
     }
 }
